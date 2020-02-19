@@ -412,6 +412,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'ryanoasis/vim-devicons'
+    Plug 'fatih/vim-go'
 call plug#end()
 
 " Coc Configuration
@@ -549,3 +550,7 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" change the Pmenu highlight
+hi CocFloating ctermbg=8  
+
