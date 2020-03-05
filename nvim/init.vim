@@ -474,6 +474,7 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 nnoremap <Leader>ff :CocList files<cr>
 
 " Use tt to toggle termial
+" Use <C-\> <C-n> to exit terminal
 nmap <Leader>tt <Plug>(coc-terminal-toggle)
 
 function! s:show_documentation()
