@@ -1,34 +1,26 @@
 {
     "diagnostic.checkCurrentLine": true,
     "suggest.timeout": 2000,
-    "python.jediEnabled": false,
+    "python.workspaceSymbols.ctagsPath": "/usr/bin/ctags",
+    "sourcekit.commandPath": "sourcekit-lsp",
     "languageserver": {
-    "ccls": {
-      "command": "ccls",
-      "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
-      "rootPatterns": [".ccls-root", "compile_commands.json"],
-      "initializationOptions": {
-         "cache": {
-           "directory": ".ccls-cache"
-         }
-       }
-    },
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"],
-      "initializationOptions": {
-        "usePlaceholders": true
-      }
-    },
-    "swift": {
-        "command": "sourcekit-lsp",
-        "args": [],
-        "filetypes": [
-            "swift"
-        ],
-        "initializationOptions": {},
-        "settings": {}
+        "ccls": {
+          "command": "ccls",
+          "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+          "rootPatterns": [".ccls-root", "compile_commands.json"],
+          "initializationOptions": {
+             "cache": {
+               "directory": ".ccls-cache"
+             }
+           }
+        },
+        "golang": {
+          "command": "gopls",
+          "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+          "filetypes": ["go"],
+          "initializationOptions": {
+            "usePlaceholders": true
+          }
+        }
     }
-}
 }
