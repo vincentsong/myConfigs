@@ -413,6 +413,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'ryanoasis/vim-devicons'
     Plug 'fatih/vim-go'
+    Plug 'keith/swift.vim'
 call plug#end()
 
 " Swift 
