@@ -1,14 +1,39 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export GOPATH=$HOME/go_workspace
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOBIN
+export GITLAB_API_TOKEN=Lyp_bf_UQXiXR3NueZYo
+
+# Ruby
+export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.7.0/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/ruby/lib"
+export CPPFLAGS="-I/usr/local/opt/ruby/include"
+export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
+
+# Node & NVM
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# Swift
+export PATH="/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:$PATH"
+
+# Android Path
+export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
+
+# Flutter
+export PATH="$PATH:$HOME/flutter/bin"
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/vincent/.oh-my-zsh"
-export TERM="xterm-256color"
+export ZSH="/Users/wsong/.oh-my-zsh"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel9k/powerlevel9k"
+export TERM="xterm-256color"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -70,15 +95,14 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  zsh-autosuggestions
-  zsh-syntax-highlighting
   colored-man-pages
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
+DEFAULT_USER=$USER
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -102,3 +126,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+source /Users/wsong/projects/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
