@@ -1,14 +1,21 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+#Java
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
+export CPPFLAGS="-I/usr/local/opt/openjdk/include"
+
+#Go
 export GOPATH=$HOME/go_workspace
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
 export GITLAB_API_TOKEN=Lyp_bf_UQXiXR3NueZYo
 
+#Rust
+export PATH="$PATH:$HOME/.cargo/bin"
+
 # Ruby
 export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.7.0/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/ruby/lib"
-export CPPFLAGS="-I/usr/local/opt/ruby/include"
+export CPPFLAGS="-I/usr/local/opt/ruby/include $CPPFLAGS"
 export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
 
 # Node & NVM
@@ -19,11 +26,17 @@ export NVM_DIR="$HOME/.nvm"
 # Swift
 export PATH="/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:$PATH"
 
+#Java Home
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"
+#export PATH="$JAVA_HOME:$PATH"
+
 # Android Path
-export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
+export ANDROID_SDK_HOME="$HOME/Library/Android/sdk"
+export ANDROID_HOME="$HOME/.android"
+export PATH="$ANDROID_SDK_HOME/platform-tools:$ANDROID_SDK_HOME/tools/bin:$PATH" 
 
 # Flutter
-export PATH="$PATH:$HOME/flutter/bin"
+export PATH="$PATH:$HOME/flutter/bin:$HOME/flutter/bin/cache/dart-sdk/bin"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/wsong/.oh-my-zsh"

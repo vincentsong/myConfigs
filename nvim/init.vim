@@ -291,6 +291,10 @@ let g:airline_powerline_fonts = 1
 " remap esc
 inoremap jk <esc>
 
+" new line in normal mode
+nmap <C-O> O<Esc>
+nmap <CR> o<Esc>
+
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
@@ -413,7 +417,8 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'ryanoasis/vim-devicons'
     Plug 'fatih/vim-go'
-    Plug 'keith/swift.vim'
+    Plug 'rust-lang/rust.vim'
+    Plug 'majutsushi/tagbar'
 call plug#end()
 
 " Swift 
@@ -570,3 +575,7 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " change the Pmenu highlight
 hi CocFloating ctermbg=8  
 
+" rust vim configuration
+let g:rustfmt_autosave = 1
+" tabbar toggle
+nmap <F8> :TagbarToggle<CR>
