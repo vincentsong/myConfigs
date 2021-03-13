@@ -51,18 +51,6 @@ tnoremap <ESC> <C-w>:q!<CR>
 " Enable syntax highlighting
 syntax on 
 
-" Enable 256 colors palette in Gnome Terminal
-if $COLORTERM == 'gnome-terminal'
-    set t_Co=256
-endif
-
-try
-    colorscheme desert
-catch
-endtry
-
-set background=dark
-
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
 
@@ -71,6 +59,7 @@ set ffs=unix,dos,mac
 
 " Buffers
 :set confirm
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -150,6 +139,7 @@ map <silent> <leader><cr> :noh<cr>
 " Plugins
 """""""""""""""""""""""""""""
 call plug#begin('~/.local/share/nvim/plugged')
+    Plug 'tpope/vim-dispatch'
     Plug 'sheerun/vim-polyglot'
     Plug 'jiangmiao/auto-pairs'
     Plug 'tpope/vim-fugitive'
@@ -162,7 +152,41 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'preservim/nerdtree'
     Plug 'dyng/ctrlsf.vim'
     Plug 'ycm-core/YouCompleteMe'
+    Plug 'sainnhe/edge'
 call plug#end()
+
+"""""""""""""""""""""""""""""""
+" Aireline
+""""""""""""""""""""""""""""""""
+let g:aireline_powerline_fonts=1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+let g:airline_theme='luna'
 
 """"""""""""""""""""
 " NERDTree
@@ -270,7 +294,35 @@ let g:ycm_echo_current_diagnostic = 1            " Echo line's diagnostic that c
 "Make Vim always render sign column:
 set signcolumn=yes
 
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
+
 """""""""""""""""""""""""""""""
 " CtrlP
 """"""""""""""""""""""""""""""""
 let g:ctrlp_open_multiple_files = 'ij'
+
+
+""""""""""""""""""""""""""""""""
+" Build command binding
+"""""""""""""""""""""""""""""""""
+
+"open vim-dispatch window and scroll to bottom
+nnoremap <C-m>m :Copen<CR> <bar> G
+
+"Build debug and release targets
+"nnoremap <F5> :Dispatch! make -C build/Debug<CR>
+"nnoremap <F6> :Dispatch! make -C build/Release<CR>
+
+""""""""""""""""""""""""""""""""
+" Edge color scheme
+"""""""""""""""""""""""""""""""""
+let g:edge_style = 'aura'
+let g:edge_enable_italic = 0
+let g:edge_disable_italic_comment = 1
+if has('termguicolors')
+    set termguicolors
+endif
+set guifont=Hack\ 11
+set background=dark
+colorscheme edge
+
