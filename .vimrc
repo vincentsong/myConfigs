@@ -150,10 +150,95 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'ryanoasis/vim-devicons'
     Plug 'majutsushi/tagbar'
     Plug 'preservim/nerdtree'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'dyng/ctrlsf.vim'
-    Plug 'ycm-core/YouCompleteMe'
     Plug 'sainnhe/edge'
 call plug#end()
+
+"""""""""""""""""""""""""""""""
+" Coc Config
+""""""""""""""""""""""""""""""""
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
 
 """""""""""""""""""""""""""""""
 " Aireline
@@ -266,35 +351,6 @@ nnoremap <C-F>t :CtrlSFToggle<CR>
 
 " (Ctrl-F + t) Toggle CtrlSF window (Insert Mode)
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
-
-"""""""""""""""""""""""""
-"YCM configuration
-""""""""""""""""""""""""""
-" Set filetypes where YCM will be turned on
-let g:ycm_filetype_whitelist = { 'cpp':1, 'h':2, 'hpp':3, 'c':4, 'cxx':5 }
-
-" Close preview window after completing the insertion
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-
-let g:ycm_confirm_extra_conf = 0                 " Don't confirm python conf
-let g:ycm_always_populate_location_list = 1      " Always populae diagnostics list
-let g:ycm_enable_diagnostic_signs = 1            " Enable line highligting diagnostics
-let g:ycm_open_loclist_on_ycm_diags = 1          " Open location list to view diagnostics
-
-let g:ycm_max_num_candidates = 20                " Max number of completion suggestions 
-let g:ycm_max_num_identifier_candidates = 10     " Max number of identifier-based suggestions
-let g:ycm_auto_trigger = 1                       " Enable completion menu
-let g:ycm_show_diagnostic_ui = 1                 " Show diagnostic display features
-let g:ycm_error_symbol = '>>'                    " The error symbol in Vim gutter
-let g:ycm_enable_diagnostic_signs = 1            " Display icons in Vim's gutter, error, warnings
-let g:ycm_enable_diagnostic_highlighting = 1     " Highlight regions of diagnostic text
-let g:ycm_echo_current_diagnostic = 1            " Echo line's diagnostic that cursor is on
-
-"Make Vim always render sign column:
-set signcolumn=yes
-
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
 
 """""""""""""""""""""""""""""""
 " CtrlP
